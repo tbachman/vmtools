@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Copyright (C) 2013 Cisco Systems, Inc.
 #
@@ -99,14 +99,12 @@ minimize_polling=True\n
 #
 get_active_ifs()
 {
-   all_ifs=`egrep 'ONBOOT' /etc/sysconfig/network-scripts/ifcfg-*`
+   all_ifs=`ls /sys/class/net`
    for interface in $all_ifs
    do 
-       active=`echo $interface | awk 'BEGIN {FS="="} {print $2}'`
-       if [ "$active" == "yes" ]; then
-           file=`echo $interface | awk 'BEGIN {FS=":"} {print $1}'`
-           intf=`basename $file | awk 'BEGIN {FS="-"} {print $2}'`
-           active_ifs=`echo "$active_ifs $intf"`
+       active=`cat /sys/class/net/$interface/operstate`
+       if [ "$active" == "up" ]; then
+           active_ifs=`echo "$active_ifs $interface"`
        fi
    done
 }
