@@ -1,8 +1,8 @@
 diff --git a/lib/opendaylight b/lib/opendaylight
-index bdebe58..54daec3 100644
+index bdebe58..cc1420a 100644
 --- a/lib/opendaylight
 +++ b/lib/opendaylight
-@@ -45,16 +45,16 @@ ODL_USERNAME=${ODL_USERNAME:-admin}
+@@ -45,21 +45,21 @@ ODL_USERNAME=${ODL_USERNAME:-admin}
  ODL_PASSWORD=${ODL_PASSWORD:-admin}
  
  # Short name of ODL package
@@ -22,3 +22,9 @@ index bdebe58..54daec3 100644
  
  # Default arguments for OpenDaylight. This is typically used to set
  # Java memory options.
+ # ``ODL_ARGS=Xmx1024m -XX:MaxPermSize=512m``
+-ODL_ARGS=${ODL_ARGS:-"-XX:MaxPermSize=384m"}
++ODL_ARGS=${ODL_ARGS:-"=Xmx2048m -XX:MaxPermSize=512m"}
+ 
+ # How long to pause after ODL starts to let it complete booting
+ ODL_BOOT_WAIT=${ODL_BOOT_WAIT:-20}
