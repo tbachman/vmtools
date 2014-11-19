@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Copyright (C) 2013 Cisco Systems, Inc.
 #
@@ -29,4 +29,5 @@ read -a entry
 if [ "$entry" != "" ]; then
     net=$entry
 fi
-nova boot --flavor m1.tiny --image $(nova image-list | grep 'cirros-0.3.1-x86_64-uec\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep $net | awk '{print $2}') admin-private --availability_zone=nova:$vm
+echo "nova boot --flavor m1.tiny --image $(nova image-list | grep 'cirros-0.3.2-x86_64-uec\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep $net | awk '{print $2}') admin-private --availability_zone=nova:$vm"
+nova boot --flavor m1.tiny --image $(nova image-list | grep 'cirros-0.3.2-x86_64-uec\s' | awk '{print $2}') --nic net-id=$(neutron net-list | grep $net | awk '{print $2}') admin-private --availability_zone=nova:$vm
