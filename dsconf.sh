@@ -54,8 +54,8 @@ header='''
 LOGFILE=stack.sh.log\n
 #SCREEN_LOGDIR=/opt/stack/data/log\n
 #LOG_COLOR=False\n
-OFFLINE=True\n
-#RECLONE=yes\n
+#OFFLINE=True\n
+RECLONE=yes\n
 \n
 '''
 
