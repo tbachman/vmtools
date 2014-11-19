@@ -127,7 +127,7 @@ select_host_ip()
         if [ "$exists" == "" ]; then
             continue;
         fi
-        ip=`ifconfig $interface | grep 'inet ' | awk 'BEGIN {FS=" "} {print $2}'`
+        ip=`ifconfig $interface | grep 'inet ' | awk 'BEGIN {FS=":"} {print $2}' | awk 'BEGIN {FS=" "} {print $1}'`
         echo "    [$count] $interface: $ip"
         let "count+=1";
     done
@@ -156,7 +156,7 @@ select_host_ip()
     do
         if [ $count == $if_index ]; then
             #echo "foo"
-            host_ip=`ifconfig $interface | grep 'inet ' | awk 'BEGIN {FS=" "} {print $2}'`
+            host_ip=`ifconfig $interface | grep 'inet ' | awk 'BEGIN {FS=":"} {print $2}' | awk 'BEGIN {FS=" "} {print $1}'`
             break;
         fi
         let "count+=1"
