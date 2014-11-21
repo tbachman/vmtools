@@ -139,14 +139,14 @@ select_host_ip()
     elif [ $count > 1 ]; then
         echo -n "Select which interface to use [$entry]: "
         read -a entry
-        if [ "$entry" > "$count" ]; then
+        if [ "$entry" -gt "$count" ]; then
             let "maxcnt=count-1"
             echo "Invalid entry, must be less than $maxcnt"
             exit
         elif [ "$entry" == "" ]; then
             entry=$if_index
         else
-            $if_index=$entry
+            if_index=$entry
         fi
         
     fi
