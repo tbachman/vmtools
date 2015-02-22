@@ -13,9 +13,9 @@
 # Ping an instance created by DevStack
 #
 
-# get the prefix
 ip=$1
-uuid=`neutron net-list | grep $(echo $ip | awk 'BEGIN {FS="."} {print $1 "." $2 "." $3}') | awk '{print $2}'`
-dhcp_server="qdhcp-$uuid"
-foo="ip netns exec $dhcp_server ping $ip"
-sudo $foo
+nnet=`neutron net-list`
+nlist=`nova list`
+uuid=`echo "$nnet" | grep $(echo "$nlist" | grep $ip | awk '{print $12}' | awk 'BEGIN {FS="="} {print $1}') | awk '{print $2}'`
+cmd="ip netns exec qdhcp-$uuid ping $ip"
+sudo $cmd
